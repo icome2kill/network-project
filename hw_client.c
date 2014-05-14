@@ -37,15 +37,19 @@ int main(int argc, char** argv) {
     struct sockaddr_in servaddr;
     char buf[MAXLINE];
     char *server_ip = "127.0.0.1";
+		int server_port = SERV_PORT;
     
-    if (argc > 2) {
-        printf("Usage: hw_client + <IP_address(default is 127.0.0.1)>.\n");
+    if (argc > 3) {
+        printf("Usage: hw_client + <IP_address(default is 127.0.0.1) <Port>>.\n");
         exit(1);
     }
     
-    if (argc == 2) {
+    if (argc >= 2) {
         server_ip = argv[1];
     }
+if (argc == 3) {
+		server_port = atoi(argv[2]);
+}
 
     int maxfd = 0;
     int flag = 0;
@@ -89,7 +93,7 @@ int main(int argc, char** argv) {
 
                                 bzero(&servaddr, sizeof (servaddr));
                                 servaddr.sin_family = AF_INET;
-                                servaddr.sin_port = htons(SERV_PORT);
+                                servaddr.sin_port = htons(server_port);
                                 Inet_pton(AF_INET, server_ip, &servaddr.sin_addr);
 
                                 Connect(sockfd, (SA *) & servaddr, sizeof (servaddr));
@@ -181,7 +185,8 @@ int main(int argc, char** argv) {
                 
                 // Again check for player state for sure.
                 if (currentPlayer->state == 2) {
-                    printf("%d sec(s) remains\n", currentRoom->timeLeft--);
+                    printf("\r%d sec(s) remains", currentRoom->timeLeft--);
+										fflush(stdout);
                 }
             }
         }
@@ -521,7 +526,7 @@ void login(int sockfd, char* name) {
     FD_SET(sockfd, &rset);
 
     struct timeval timeout;
-    timeout.tv_sec = 3;
+    timeout.tv_sec = 30;
     timeout.tv_usec = 0;
 
     Select(sockfd + 1, &rset, NULL, NULL, &timeout);
