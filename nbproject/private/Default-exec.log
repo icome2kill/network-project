@@ -1,0 +1,35 @@
+called: gcc
+	/home/hoandq/Desktop/Networking/Project
+	gcc
+	-I../unpv13e/unpv13e/lib
+	-O2
+	-D_REENTRANT
+	-Wall
+	-g
+	-c
+	player.c
+
+called: gcc
+	/home/hoandq/Desktop/Networking/Project
+	gcc
+	-I../unpv13e/unpv13e/lib
+	-O2
+	-D_REENTRANT
+	-Wall
+	-g
+	-c
+	room.c
+
+called: gcc
+	/home/hoandq/Desktop/Networking/Project
+	gcc
+	-I../unpv13e/unpv13e/lib
+	-O2
+	-D_REENTRANT
+	-Wall
+	-g
+	-c
+	hw_client.c
+	../unpv13e/unpv13e/libunp.a
+	-lpthread
+

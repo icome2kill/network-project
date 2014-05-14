@@ -1,0 +1,21 @@
+gcc -I../unpv13e/unpv13e/lib -O2 -D_REENTRANT -Wall -g -c player.c
+player.c: In function ‘newPlayer’:
+player.c:8: warning: implicit declaration of function ‘strcpy’
+player.c:8: warning: incompatible implicit declaration of built-in function ‘strcpy’
+gcc -I../unpv13e/unpv13e/lib -O2 -D_REENTRANT -Wall -g -c room.c
+room.c: In function ‘newRoom’:
+room.c:6: warning: implicit declaration of function ‘strcpy’
+room.c:6: warning: incompatible implicit declaration of built-in function ‘strcpy’
+gcc -I../unpv13e/unpv13e/lib -O2 -D_REENTRANT -Wall -g -c hw_client.c ../unpv13e/unpv13e/libunp.a -lpthread
+hw_client.c: In function ‘main’:
+hw_client.c:32: warning: passing argument 1 of ‘gets’ from incompatible pointer type
+/usr/include/stdio.h:634: note: expected ‘char *’ but argument is of type ‘char (*)[50]’
+hw_client.c:13: warning: unused variable ‘currentPlayer’
+hw_client.c: At top level:
+hw_client.c:73: error: conflicting types for ‘login’
+hw_client.c:6: note: previous declaration of ‘login’ was here
+hw_client.c: In function ‘login’:
+hw_client.c:76: error: ‘ID_LOGIN’ undeclared (first use in this function)
+hw_client.c:76: error: (Each undeclared identifier is reported only once
+hw_client.c:76: error: for each function it appears in.)
+gmake: *** [hw_client.o] Error 1
